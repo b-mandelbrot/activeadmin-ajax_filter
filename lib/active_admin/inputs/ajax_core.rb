@@ -14,6 +14,7 @@ module ActiveAdmin
           'data-display-fields' => display_fields,
           'data-search-fields' => search_fields,
           'data-ajax-search-fields' => ajax_search_fields,
+          'data-ajax-search-alias-fields' => ajax_search_alias_fields,
           'data-ordering' => ordering,
           'data-ransack' => ransack,
           'data-static-ransack' => static_ransack,
@@ -49,6 +50,10 @@ module ActiveAdmin
 
       def ajax_search_fields
         ajax_data[:ajax_search_fields]
+      end
+
+      def ajax_search_alias_fields
+        ajax_data[:ajax_search_alias_fields]
       end
 
       def ordering

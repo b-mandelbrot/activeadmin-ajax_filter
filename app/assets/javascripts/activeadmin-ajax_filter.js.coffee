@@ -13,8 +13,12 @@ $ ->
       minCharsCountToRequest = select.data('min-chars-count-to-request') || 1
 
       ajaxFields = select.data('ajax-search-fields')
+      ajaxAliasFields = select.data('ajax-search-alias-fields')
       if ajaxFields
-        ajaxFields = ajaxFields.split(' ')
+        if ajaxAliasFields
+          ajaxFields = ajaxAliasFields.split(' ')
+        else
+          ajaxFields = ajaxFields.split(' ')
       else
         ajaxFields = []
 

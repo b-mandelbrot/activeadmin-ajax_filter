@@ -96,6 +96,42 @@ RSpec.describe ActiveAdmin::Inputs::AjaxCore do
     end
   end
 
+  describe '#ajax_search_alias_fields' do
+    subject { filter.ajax_search_alias_fields }
+
+    context 'no ajax_search_alias_fields in data' do
+      it 'should be nil' do
+        is_expected.to be_nil
+      end
+    end
+
+    context '#ajax_search_alias_fields in data' do
+      let(:data) { { ajax_search_alias_fields: [:name, :email] } }
+
+      it 'should use explicit value' do
+        is_expected.to eq [:name, :email]
+      end
+    end
+  end
+
+  describe '#ajax_search_fields' do
+    subject { filter.ajax_search_fields }
+
+    context 'no ajax_search_fields in data' do
+      it 'should be nil' do
+        is_expected.to be_nil
+      end
+    end
+
+    context '#ajax_search_fields in data' do
+      let(:data) { { ajax_search_fields: [:name, :email] } }
+
+      it 'should use explicit value' do
+        is_expected.to eq [:name, :email]
+      end
+    end
+  end
+
   describe '#ordering' do
     subject { filter.ordering }
 
