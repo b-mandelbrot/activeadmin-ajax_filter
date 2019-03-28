@@ -14,13 +14,14 @@ $ ->
 
       ajaxFields = select.data('ajax-search-fields')
       ajaxAliasFields = select.data('ajax-search-alias-fields')
+
       if ajaxFields
-        if ajaxAliasFields
-          ajaxFields = ajaxAliasFields.split(' ')
-        else
-          ajaxFields = ajaxFields.split(' ')
+        ajaxFields = ajaxFields.split(' ')
       else
         ajaxFields = []
+
+      if ajaxAliasFields
+        ajaxAliasFields = ajaxAliasFields.split(' ')
 
       ordering = select.data('ordering')
       url = select.data('url')
@@ -76,8 +77,12 @@ $ ->
             q = {}
             q[select.data('ransack')] = query
 
-            ajaxFields.forEach (field) ->
-              q["#{field}_eq"] = relatedInput(field).val()
+            ajaxFields.forEach (field, index) ->
+              newField = field
+              if ajaxAliasFields
+                newField = ajaxAliasFields[index]
+
+              q["#{newField}_eq"] = relatedInput(field).val()
               # clear cache because it wrong with changing values of ajaxFields
               select.loadedSearches = {}
 
